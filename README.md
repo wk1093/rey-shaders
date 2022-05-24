@@ -1,3 +1,3 @@
 # rey-shaders
 
-Using [The book of shader editor](https://thebookofshaders.com/edit.php)
+Using this [editor](https://thebookofshaders.com/edit.php) to test
