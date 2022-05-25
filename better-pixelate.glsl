@@ -18,9 +18,20 @@ vec3 hsb2rgb( in vec3 c ){
     return c.z * mix( vec3(1.0), rgb, c.y);
 }
 
-float amount = 50.;
+int positive(in int a) {
+    if (a > 0){
+        return a;
+    } else if (a < 0) {
+        return -a;
+    } else {
+        return 0;
+    }
+}
+
+int amount = 20;
 
 void main(){
+    //amount = positive(int(sin(u_time)*20.))+5;
     vec2 UV = gl_FragCoord.xy/u_resolution;
     vec2 grid_uv = floor(UV * float(amount)) / float(amount);
     
