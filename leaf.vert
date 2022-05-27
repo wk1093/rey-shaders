@@ -8,7 +8,6 @@ varying vec3 fNormal;
 varying vec3 fPosition;
 uniform float time;
 
-
 float random (in vec2 _st) {
     return fract(sin(dot(_st.xy,
                          vec2(12.9898,78.233)))*
@@ -35,6 +34,7 @@ float noise (in vec2 _st) {
 }
 
 
+
 void main()
 {
   fNormal = normalize(normalMatrix * normal);
@@ -42,9 +42,13 @@ void main()
   fPosition = pos.xyz;
   gl_Position = projectionMatrix * pos;
   gl_Position = vec4(
-    gl_Position.x+.2*noise(gl_Position.xy*sin(time*18.4567)),
-    gl_Position.y+.2*noise(gl_Position.xz*sin(time*8.234)),
-    gl_Position.z+.2*noise(gl_Position.zy*sin(time*7.3452)),
-    gl_Position.a+.2*noise(gl_Position.zx*sin(time*9.345))
-  );
+    gl_Position.x+noise(gl_Position.zy*noise(gl_Position.xy)
+                    *sin(time*2.82234)*cos(time*5.6983))*.5,
+    gl_Position.y+noise(gl_Position.ab*noise(gl_Position.yz)
+                    *sin(time*6.74534)*cos(time*2.8773))*.5,
+    gl_Position.z+noise(gl_Position.ra*noise(gl_Position.ba)
+                    *sin(time*5.93271)*cos(time*4.5857))*.5,
+    gl_Position.a+noise(gl_Position.yx*noise(gl_Position.ar)
+                    *sin(time*7.29834)*cos(time*2.4877))*.5
+    );
 }
